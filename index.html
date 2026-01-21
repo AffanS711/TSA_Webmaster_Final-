@@ -19,6 +19,9 @@
     .line-clamp-2{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
     .nav-link { cursor: pointer; transition: all 0.2s; border-bottom: 2px solid transparent; }
     .nav-link.active { color: #0f766e; border-bottom-color: #0f766e; }
+    /* Custom height for the map and list container */
+    .content-height { height: 500px; }
+    #results { height: 430px; overflow-y: auto; }
   </style>
 </head>
 <body class="min-h-screen bg-gradient-to-br from-teal-50 via-white to-slate-50 text-gray-900">
@@ -41,7 +44,7 @@
 </header>
 
 <main id="page-home" class="max-w-7xl mx-auto px-4 py-6">
-  <section class="rounded-3xl p-4 md:p-6 bg-white/70 glass shadow-soft border border-teal-100">
+  <section class="rounded-3xl p-4 md:p-6 bg-white/70 glass shadow-soft border border-teal-100 mb-6">
     <div class="grid grid-cols-1 md:grid-cols-5 gap-3">
       <label class="block">
         <span class="text-xs font-semibold text-gray-700">Search</span>
@@ -63,18 +66,17 @@
         <button id="reset" class="w-full h-[42px] mt-1 rounded-xl bg-teal-700 text-white hover:opacity-90 transition shadow-md font-medium">Reset filters</button>
       </div>
     </div>
-    <div class="mt-3 text-sm text-gray-600">Showing <span id="count" class="font-bold">0</span> results</div>
+    <div class="mt-3 text-sm text-gray-600">Showing <span id="count" class="font-bold text-teal-700">0</span> results</div>
   </section>
 
-  <section class="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
-    <div class="rounded-3xl overflow-hidden bg-white/70 glass border border-teal-100 shadow-soft">
-      <div id="map" style="height: 540px;"></div>
+  <section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <div class="rounded-3xl overflow-hidden bg-white/70 glass border border-teal-100 shadow-soft content-height">
+      <div id="map" class="h-full w-full"></div>
     </div>
-    <div class="rounded-3xl p-4 md:p-6 bg-white/70 glass border border-teal-100 shadow-soft">
-      <div class="flex items-center justify-between mb-4">
-        <h2 class="text-lg md:text-xl font-semibold text-teal-900">Resources</h2>
-      </div>
-      <div id="results" class="space-y-3"></div>
+    
+    <div class="rounded-3xl p-4 md:p-6 bg-white/70 glass border border-teal-100 shadow-soft content-height">
+      <h2 class="text-lg font-semibold text-teal-900 mb-4 border-b pb-2">Resources</h2>
+      <div id="results" class="space-y-3 pr-2"></div>
     </div>
   </section>
 </main>
@@ -82,35 +84,41 @@
 <main id="page-refs" class="max-w-7xl mx-auto px-4 py-6 hidden">
   <section class="rounded-3xl p-8 bg-white/70 glass shadow-soft border border-teal-100">
     <h2 class="text-2xl font-bold mb-6 text-teal-900">Project References</h2>
-    <p class="text-gray-700 mb-8">These are the resources we used to build this project:</p>
+    <p class="text-gray-700 mb-8 font-medium">These are the resources we used to build this project:</p>
     
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
       <div>
-        <h3 class="font-bold text-gray-900 mb-4 uppercase text-xs tracking-widest">Web Development & Styling</h3>
-        <ul class="space-y-3 text-sm">
+        <h3 class="font-bold text-gray-900 mb-4 uppercase text-xs tracking-widest border-l-4 border-teal-600 pl-3">Web Development & Styling</h3>
+        <ul class="space-y-4 text-sm">
           <li>
-            <a href="https://www.w3schools.com/html/" target="_blank" class="text-teal-700 hover:underline">HTML Tutorial - W3Schools</a>
+            <a href="https://www.w3schools.com/html/" target="_blank" class="text-teal-700 hover:text-teal-900 font-semibold underline decoration-teal-200 underline-offset-4">HTML Tutorial - W3Schools</a>
+            <p class="text-gray-500 text-xs mt-1">Used for structural elements and page hierarchy.</p>
           </li>
           <li>
-            <a href="https://tailwindcss.com/" target="_blank" class="text-teal-700 hover:underline">Tailwind CSS Documentation</a>
+            <a href="https://tailwindcss.com/" target="_blank" class="text-teal-700 hover:text-teal-900 font-semibold underline decoration-teal-200 underline-offset-4">Tailwind CSS Documentation</a>
+            <p class="text-gray-500 text-xs mt-1">Used for layout, spacing, and responsive design.</p>
           </li>
           <li>
-            <a href="https://v1.tailwindcss.com/components/buttons" target="_blank" class="text-teal-700 hover:underline">Tailwind Button Components</a>
+            <a href="https://v1.tailwindcss.com/components/buttons" target="_blank" class="text-teal-700 hover:text-teal-900 font-semibold underline decoration-teal-200 underline-offset-4">Tailwind Button Components</a>
+            <p class="text-gray-500 text-xs mt-1">Used as a reference for interactive UI elements.</p>
           </li>
         </ul>
       </div>
 
       <div>
-        <h3 class="font-bold text-gray-900 mb-4 uppercase text-xs tracking-widest">Mapping & Deployment</h3>
-        <ul class="space-y-3 text-sm">
+        <h3 class="font-bold text-gray-900 mb-4 uppercase text-xs tracking-widest border-l-4 border-teal-600 pl-3">Mapping & Deployment</h3>
+        <ul class="space-y-4 text-sm">
           <li>
-            <a href="https://leafletjs.com/" target="_blank" class="text-teal-700 hover:underline">Leaflet.js Mapping Library</a>
+            <a href="https://leafletjs.com/" target="_blank" class="text-teal-700 hover:text-teal-900 font-semibold underline decoration-teal-200 underline-offset-4">Leaflet.js Mapping Library</a>
+            <p class="text-gray-500 text-xs mt-1">Powering the interactive map and marker logic.</p>
           </li>
           <li>
-            <a href="https://github.com/" target="_blank" class="text-teal-700 hover:underline">GitHub Version Control</a>
+            <a href="https://github.com/" target="_blank" class="text-teal-700 hover:text-teal-900 font-semibold underline decoration-teal-200 underline-offset-4">GitHub Version Control</a>
+            <p class="text-gray-500 text-xs mt-1">Utilized for source code management.</p>
           </li>
           <li>
-            <a href="https://pages.github.com/" target="_blank" class="text-teal-700 hover:underline">GitHub Pages Deployment</a>
+            <a href="https://pages.github.com/" target="_blank" class="text-teal-700 hover:text-teal-900 font-semibold underline decoration-teal-200 underline-offset-4">GitHub Pages Deployment</a>
+            <p class="text-gray-500 text-xs mt-1">Hosting the live project for public access.</p>
           </li>
         </ul>
       </div>
@@ -119,9 +127,9 @@
 </main>
 
 <footer class="max-w-7xl mx-auto px-4 py-10 text-xs text-gray-500">
-  <div class="flex flex-col md:flex-row items-center justify-between gap-3">
+  <div class="flex flex-col md:flex-row items-center justify-between gap-3 border-t border-gray-200 pt-6">
     <div>© 2025 Texas Directory Hub</div>
-    <div>Built with Leaflet and Tailwind CSS</div>
+    <div>Built for education with Leaflet and Tailwind CSS</div>
   </div>
 </footer>
 
@@ -222,12 +230,12 @@ function renderList(data){
     return;
   }
   el.innerHTML = data.map(d => `
-    <a href="${d.url}" target="_blank" class="block">
-      <div class="rounded-2xl p-4 bg-white/70 hover:bg-white shadow-sm border border-teal-50 transition-all">
+    <a href="${d.url}" target="_blank" class="block mb-2 last:mb-0">
+      <div class="rounded-xl p-4 bg-white/50 hover:bg-white shadow-sm border border-teal-50 transition-all hover:border-teal-200">
         <div class="flex gap-4">
           <div class="flex-1 min-w-0">
-            <h3 class="font-bold text-gray-900 truncate">${d.name}</h3>
-            <p class="text-xs text-gray-500 line-clamp-2 mt-1">${d.desc}</p>
+            <h3 class="font-bold text-gray-900 truncate text-sm">${d.name}</h3>
+            <p class="text-[11px] text-gray-500 line-clamp-1 mt-0.5">${d.desc}</p>
           </div>
         </div>
       </div>
